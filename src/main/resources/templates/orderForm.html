@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+
+<body>
+<form method="POST" th:action="@{/orders/confirm}">
+    <h1>Order your taco creations!</h1>
+
+    <img th:src="@{/images/TacoCloud.png}"/>
+
+    <h3>Your tacos in this order:</h3>
+    <a th:href="@{/design}" id="another">Design another taco</a><br/>
+    <ul th:each="taco : ${tacoOrder.tacos}">
+        <li>
+            <span th:text="${taco.name}">taco name</span>
+        </li>
+    </ul>
+
+    <h3>Deliver my taco masterpieces to...</h3>
+    <label for="deliveryName">Name: </label>
+    <input type="text" th:field="*{tacoOrder.deliveryName}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryName')}"
+          th:errors="*{tacoOrder.deliveryName}">Delivery Name Error</span>
+    <br/>
+
+    <label for="deliveryStreet">Street address: </label>
+    <input type="text" th:field="*{tacoOrder.deliveryStreet}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryCity')}"
+          th:errors="*{tacoOrder.deliveryCity}">Delivery Street Error</span>
+    <br/>
+
+    <label for="deliveryCity">City: </label>
+    <input type="text" th:field="*{tacoOrder.deliveryCity}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryCity')}"
+          th:errors="*{tacoOrder.deliveryCity}">Delivery City Error</span>
+    <br/>
+
+    <label for="deliveryState">State: </label>
+    <input type="text" th:field="*{tacoOrder.deliveryState}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryState')}"
+          th:errors="*{tacoOrder.deliveryState}">Delivery State Error</span>
+    <br/>
+
+    <label for="deliveryZip">Zip code: </label>
+    <input type="text" th:field="*{tacoOrder.deliveryZip}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('deliveryZip')}"
+          th:errors="*{tacoOrder.deliveryZip}">Delivery Zip Error</span>
+    <br/>
+
+    <label for="ccNumber">Credit Card #: </label>
+    <input type="text" th:field="*{tacoOrder.ccNumber}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ccNumber')}"
+          th:errors="*{tacoOrder.ccNumber}">CC Num Error</span>
+    </br>
+
+    <label for="ccExpiration">Expiration: </label>
+    <input type="text" th:field="*{tacoOrder.ccExpiration}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ccExpiration')}"
+          th:errors="*{tacoOrder.ccExpiration}">Expiration Error</span>
+    <br/>
+
+    <label for="ccCVV">CVV: </label>
+    <input type="text" th:field="*{tacoOrder.ccCVV}"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('ccCVV')}"
+          th:errors="*{tacoOrder.ccCVV}">CC Error</span>
+    <br/>
+
+    <input type="submit" value="Submit Order"/>
+</form>
+</body>
+</html>
